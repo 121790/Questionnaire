@@ -46,9 +46,6 @@ class Question:
         self.bonne_reponse = bonne_reponse
 
 
-
-
-
     def from_json_data(data):
         # ....
         choix = [chx[0]  for chx in data["choix"]]
@@ -150,4 +147,4 @@ if len(sys.argv) < 2:
 
 json_file_name = sys.argv[1]
 
-Questionnaire.from_json_file("arts_museedulouvre_debutant.json").lancer()
+Questionnaire.from_json_file(json_file_name).lancer()
