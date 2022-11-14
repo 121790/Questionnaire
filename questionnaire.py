@@ -57,7 +57,7 @@ class Question:
         return q
 
     def poser(self, inc, nb_ques):
-        print("QUESTION " + str(inc+1) + "/ " + str(nb_ques))
+        print("QUESTION " + str(inc) + "/ " + str(nb_ques))
         print("  " + self.titre)
         for i in range(len(self.choix)):
             print("  ", i+1, "-", self.choix[i])
@@ -110,7 +110,7 @@ class Questionnaire:
 
         score = 0
         for i in range(nb_question):
-            if self.questions[i].poser(i, nb_question):
+            if self.questions[i].poser(i+1, nb_question):
                 score += 1
         print("Score final :", score, "sur", nb_question)
         return score
@@ -139,12 +139,18 @@ def choix_de_quizz_utlisateur(min, max):
     except:
         print("ERREUR : Veuillez rentrer uniquement des chiffres")
     return choix_de_quizz_utlisateur(min, max)
-    
 
-if len(sys.argv) < 2:
-    print("Donner un nom de fichier ")
-    exit(0)
 
-json_file_name = sys.argv[1]
 
-Questionnaire.from_json_file(json_file_name).lancer()
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Donner un nom de fichier ")
+        exit(0)
+
+    json_file_name = sys.argv[1]
+    Questionnaire.from_json_file(json_file_name).lancer()
+
+else:
+    print(__name__)
+
+
